@@ -1,0 +1,22 @@
+{
+    "start_url": "./index.html",
+    "short_name": "LGLSI 3-B",
+    "name": "LGLSI 3-B",
+    "description": "3-b",
+    "display": "fullscreen",
+    "background_color": "#6600ff",
+    "theme_color": "#6600ff",
+    "orientation":"portrait",
+    "icons": [{
+            "src": "./Images/icon/icon72.png",
+            "type": "image/png",
+            "sizes": "72x72"
+        },
+        {
+            "src": "./Images/icon/icon384.png",
+            "type": "image/png",
+            "sizes": "384x384"
+        }
+    ]
+
+}

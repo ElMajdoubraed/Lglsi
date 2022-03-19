@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#6610f2">
+  <link href="Images/icon_head.png" rel="shortcut icon" type="image/png">
+  <title>LGLSI - Espace Etudiant - Ajouter</title>
+  <link rel="stylesheet" href="Css/bootstrap.min.css">
+  <link rel="stylesheet" href="Css/bootstrap.min.css.map">
+  <link rel="stylesheet" href="Css/style.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="description" content="Ajouter LGLSI Espace Etudiant Consulter
+  Istic Borj Cedria Institut Supérieur des Technologies de l'Information BorjCedria">
+</head>
+
+<body>
+  <input id="chap" type="hidden" value="ds">
+  <div class="container">
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+    <div class="container-fluid">
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item">
+            <a class="nav-link font_navbar " aria-current="page" href="https://lglsi-3b.web.app/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link font_navbar " href="cours.html">Cours</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link font_navbar" href="td.html">TD</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link font_navbar" href="tp.html">Tp</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link font_navbar" href="ds.html">Ds</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link font_navbar" href="examen.html">Examen</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link font_navbar" href="revision.html">Revision</a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+  <br><br><br>
+  <br>
+  <div class="row">
+      <div class="col-xl-9 mb-3" >
+ <h4 class="text-primary" id="h4"> </h4>
+
+</div>
+
+    
+
+</div>
+
+<div id="alert">
+
+</div>
+    <form action="" method="POST" id="f1">
+        <div class="mb-3">
+            
+            <input type="text" class="form-control"  id="chap1" disabled required>
+          </div>
+        <div class="mb-3">
+    <label for="Matiere" class="form-label">Matiere</label>
+    <input type="text" class="form-control"  id="Matiere" disabled required>
+  </div>
+  <div class="mb-3">
+    <label for="d" class="form-label">Date</label>
+    <input type="text" class="form-control"  id="d" disabled required>
+  </div>
+  <div class="mb-4">
+    <label for="formFileMultiple" class="form-label">Files</label>
+    <input class="form-control" type="file" id="formFileMultiple" multiple required>
+    <br>
+    <div class="progress">
+      <div class="progress-bar progress-bar-striped" role="progressbar"  id="p_b" style="width: 0%" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+     0 % </div>
+    </div>
+    
+  </div>
+<div class="mb-3">
+  
+  <label for="floatingTextarea">Description</label>
+  <input class="form-control" placeholder="exemple : Chapitre1_cours_securite" type="text" id="floatingTextarea"  required>
+ <p class="mb-2 text-muted p_description">**Iktep chapitre wl description kamla bch taawen s7abek ya3rfo w tsahel aalihom recherche exemple : Chapitre1_cours_securite</p>
+</div>
+
+  <div id="buttonHidden">
+<button class="btn btn-primary mb-3"  id="ajouter" type="button" onclick="verf()"></button>
+</div>
+</form>
+</div>
+
+  <script src="JS/bootstrap.bundle.min.js">
+  </script>
+  <script src="JS/bootstrap.bundle.min.js.map">
+  </script>
+  <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-database.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-storage.js"></script>
+  <script id="mainscript"> 
+  const firebaseConfig = {
+      apiKey: "AIzaSyD-UXf2KoJTn9zONViZbsHoF06X0dZKNvw",
+      authDomain: "lglsi-3b.firebaseapp.com",
+      projectId: "lglsi-3b",
+      storageBucket: "lglsi-3b.appspot.com",
+      messagingSenderId: "327698858752",
+      appId: "1:327698858752:web:da40e293b4dfda4df1e9e5",
+      measurementId: "G-WKHLK9T64M"
+    };
+  
+    // Initialize Firebase
+     firebase.initializeApp(firebaseConfig);
+
+
+    var url=(window.location != window.parent.location)
+            ? document.referrer
+            : document.location.href;
+    var  v=url.substring(url.indexOf('?'),url.length);
+      var elm=v.split('=');
+      mml=elm[1].toLowerCase();
+      mmm=elm[2].toLowerCase();
+      ch="<a href="+mml+".html >"+elm[1]+"</a> / "+elm[1]+" " +elm[2];document.getElementById("h4").innerHTML=ch;
+document.getElementById("chap1").value=elm[1];
+var aujourdhui = new Date();
+document.getElementById("d").value=aujourdhui.toGMTString();
+document.getElementById("Matiere").value=elm[2];
+document.getElementById("ajouter").innerHTML="Ajouter "+elm[1]+" " +elm[2];
+function ajou(){
+  name=document.getElementById("floatingTextarea").value;
+  let input = document.getElementById("formFileMultiple").files;
+  n=input.length
+  for (let i=0;i<n;i++){
+    firebase.database().ref(elm[1]+"/"+elm[2]+"/url").push(name)
+firebase.storage().ref(elm[1]+"/"+elm[2]+"/"+name).put(
+  document.getElementById("formFileMultiple").files[i]
+).on('state_changed',(snapshot)=>{
+  document.getElementById("ajouter").innerHTML="Wait ...";
+  document.getElementById("ajouter").disabled=true;
+  const progress = (snapshot.bytesTransferred/snapshot.totalBytes)*100;
+  const progressBar=document.getElementById("p_b");
+  progressBar.value=progress;
+  document.getElementById("p_b").innerHTML=Math.floor(progress)+"%";
+  document.getElementById("p_b").style.width=progress+"%";
+  if(progressBar.value=="100"){
+    document.getElementById("buttonHidden").innerHTML="";
+    document.getElementById("alert").innerHTML=`<div class="alert alert-success" role="alert">Yaatik saha fichier t3ada</div>`
+  }
+})
+
+  }
+
+  }
+  function verf(){
+    a=document.getElementById("formFileMultiple").value;
+    b=document.getElementById("floatingTextarea").value;
+    if(a==""&& b==""){
+      alert("a3ti les donnees l kol kamltin bch s7abek yistanf3o");
+    }else{
+      ajou();
+    }
+  }
+  </script>
+  <script src="JS/app.js"></script>
+</body>
+
+</html>

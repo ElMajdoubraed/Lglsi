@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#6610f2">
+  <link href="Images/icon_head.png" rel="shortcut icon" type="image/png">
+  <title>LGLSI - Espace Etudiant - Consulter</title>
+  <link rel="stylesheet" href="Css/bootstrap.min.css">
+  <link rel="stylesheet" href="Css/bootstrap.min.css.map">
+  <link rel="stylesheet" href="Css/style.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="description" content="Consulter LGLSI Espace Etudiant Consulter
+  Istic Borj Cedria Institut Supérieur des Technologies de l'Information BorjCedria">
+</head>
+
+<body>
+  <input id="chap" type="hidden" value="ds">
+  <div class="container">
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+    <div class="container-fluid">
+
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
+        aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item">
+            <a class="nav-link font_navbar " aria-current="page" href="https://lglsi-3b.web.app/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link font_navbar " href="cours.html">Cours</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link font_navbar" href="td.html">TD</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link font_navbar" href="tp.html">Tp</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link font_navbar" href="ds.html">Ds</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link font_navbar" href="examen.html">Examen</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link font_navbar" href="revision.html">Revision</a>
+          </li>
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+  <br><br><br>
+  <br>
+  <div class="row">
+      <div class="col-xl-9 mb-3" >
+ <h4 class="text-primary" id="h4"> </h4>
+
+</div>
+<div class="col-xl-3">
+    <button class="btn btn-primary" id="ajouter" onclick="ajouter()"></button>
+</div>
+</div>
+<br>
+<h1 style="font-size:x-large;" class="text-center text-primary">Lglsi Istic BorjCedria</h1>
+<br><br><br>
+<div class="row" id="rr">
+  <div id="z1">
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+
+  <div class="spinner-grow text-success" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+  <div class="spinner-grow text-warning" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+  <div class="spinner-grow text-danger" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+
+</div>
+</div>
+</div>
+  
+  <script src="JS/bootstrap.bundle.min.js">
+  </script>
+  <script src="JS/bootstrap.bundle.min.js.map">
+  </script>
+    <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.20.0/firebase-storage.js"></script>
+  <script type="text/javascript">
+  const firebaseConfig = {
+      apiKey: "AIzaSyD-UXf2KoJTn9zONViZbsHoF06X0dZKNvw",
+      authDomain: "lglsi-3b.firebaseapp.com",
+      projectId: "lglsi-3b",
+      storageBucket: "lglsi-3b.appspot.com",
+      messagingSenderId: "327698858752",
+      appId: "1:327698858752:web:da40e293b4dfda4df1e9e5",
+      measurementId: "G-WKHLK9T64M"
+    };
+
+    
+      
+
+  
+    // Initialize Firebase
+     firebase.initializeApp(firebaseConfig);
+     
+      var url=(window.location != window.parent.location)
+            ? document.referrer
+            : document.location.href;
+            ch2="";
+    var  v=url.substring(url.indexOf('?'),url.length);
+      var elm=v.split('=');
+      mml=elm[1].toLowerCase();
+      mmm=elm[2].toLowerCase();
+ch="<a href="+mml+".html >"+elm[1]+"</a> / "+elm[1]+" " +elm[2];
+document.getElementById("h4").innerHTML=ch;
+document.getElementById("ajouter").innerHTML="Ajouter "+elm[1]+" " +elm[2];
+firebase.database().ref(elm[1]+"/"+elm[2]+"/url").on('value',function(snapshot){
+  u=snapshot.val()
+  if(u!==null){
+  Object.keys(u).forEach(l => {
+    firebase.storage().ref(elm[1]+"/"+elm[2]+"/"+u[l]).getDownloadURL().then(function(url){
+      ch3=elm[1]+" "+elm[2]
+     if (u!==null){ 
+     ch2=`<div class="mb-3 col-xl-3">
+     <div class="card" style="height:10rem;">
+  <div class="card-body">
+    <h5 class="card-title">`+ch3+`</h5>
+    <h6 class="card-title text-primary">`+u[l]+`</h6>
+    <a href="`+url+`" class="card-link">Voir</a>
+  </div>
+</div></div>`}
+
+     document.getElementById("rr").insertAdjacentHTML("beforeend",ch2);
+})
+  }); document.getElementById("z1").innerHTML="";}
+  else{
+    ch2=`<div class="mb-3 col-xl-3">
+     <h4 class="text-danger">Mzel mafama 7atta `+elm[1]+" "+elm[2]+` </h4></div>` 
+      document.getElementById("rr").insertAdjacentHTML("beforeend",ch2);
+      document.getElementById("z1").innerHTML="";
+  }
+ 
+})
+registration.pushManager.subscribe({
+    userVisibleOnly: true,
+    applicationServerKey: convertedVapidKey
+});
+const messaging = firebase.messaging();
+messaging
+            .requestPermission()
+            .then(function () {
+                console.log("Notification Permission");
+                return messaging.getToken();
+            })
+            .then(function (token) {
+                console.log("Token : "+token);
+        alert("c bn")
+            })
+            .catch(function (reason) {
+                console.log(reason);
+            });
+            registration.pushManager.subscribe({
+    userVisibleOnly: true,
+    applicationServerKey: convertedVapidKey
+});
+     messaging.getToken({ vapidKey: 'AIzaSyD-UXf2KoJTn9zONViZbsHoF06X0dZKNvw' }).then((currentToken) => {
+      firebase.database().ref("user").push("+1")
+      console.log("+1")
+  if (currentToken) {
+    firebase.database().ref("notif").push(currentToken)
+    console.log("cbn")
+  } else {
+    // Show permission request UI
+    console.log('No registration token available. Request permission to generate one.');
+    // ...
+  }
+}).catch((err) => {
+
+  console.log("+1")
+  console.log('An error occurred while retrieving token. ', err);
+  // ...
+});
+function ajouter(){
+    window.location.href="ajouter.html?url="+elm[1]+"="+elm[2];
+}
+      </script>
+<script src="JS/app.js"></script>
+</body>
+
+</html>
